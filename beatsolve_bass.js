@@ -66,7 +66,7 @@ function checkAnswer() {
     }
     // changes position of which character user is on
     pos += 1;
-    if (correct !== 5 && pos === 5) {
+    if (correct !== 5 && pos === 5) { // if the user doesn't get all 5 right, the quiz resets
         window.alert(test.innerHTML = "You got " + correct + " of " + questions.length + " questions correct! Try again!");
         renderQuestion(false);
     } else if (correct === 5) {
