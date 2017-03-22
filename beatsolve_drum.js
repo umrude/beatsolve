@@ -59,8 +59,6 @@ function renderQuestion() {
     "use strict";
     test = get("test");
     if (pos >= questions.length) {
-        test.innerHTML = "<h2>You got " + correct + " of " + questions.length + " questions correct</h2>";
-        get("test_status").innerHTML = "Test completed";
         //
         pos = 0;
         correct = 0;
