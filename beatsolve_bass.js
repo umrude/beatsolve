@@ -12,19 +12,50 @@ var pos = 0,
     correct = 0;
 
 var questions = [
-    ["Why do JavaScript and Java have similar names?", "Javascript is a stripped-down version of Java", "JavaScript's syntax is loosely based on Java's", "They both orginated on the island of Java", "The creators loved coffee", "B"],
-    ["What are variables used for in JavaScript programs?", "Storing numbers, dates or other values", "Varying randomnly", "Causing high-school alegbra flashbacks", "Creating variation in a function", "A"],
-    ["What is the correct JavaScript syntax to write 'Hello World'?", "System.out.println('Hello World')", "write.me'Hello World'", "document.write('Hello World')", "response.write('Hello World')", "C"],
-    ["Inside which HTML element do we put the JavaScript", "< script >", "< js >", "< javascript >", "< dothing >", "A"],
-    ["How does JavaScript store dates in a date object?", "The number of milliseconds since January 1st, 1970", "The number of seconds since the earth's first rotation", "It looks at a clock", "Number of days since January 1st, 1899", "A"]
+    ["Why do JavaScript and Java have similar names?", // question 1
+        "Javascript is a stripped-down version of Java", //A
+        "JavaScript's syntax is loosely based on Java's", //B
+        "They both orginated on the island of Java", //C
+        "The creators loved coffee", //D
+        "B"],
+    
+    ["What are variables used for in JavaScript programs?", //question 2
+        "Storing numbers, dates or other values", //A
+        "Varying randomnly", //B
+        "Causing high-school alegbra flashbacks", //C
+        "Creating variation in a function", //D
+        "A"],
+    
+    ["What is the correct JavaScript syntax to write 'Hello World'?", //question 3
+        "System.out.println('Hello World')", //A
+        "write.me'Hello World'", //B
+        "document.write('Hello World')", //C 
+        "response.write('Hello World')", //D
+        "C"],
+    
+    ["Inside which HTML element do we put the JavaScript", //question 4
+        "< script >", //A
+        "< js >", //B
+        "< javascript >", //C
+        "< dothing >", //D
+        "A"],
+    
+    ["How does JavaScript store dates in a date object?", //question 5
+        "The number of milliseconds since January 1st, 1970", //A
+        "The number of seconds since the earth's first rotation", //B
+        "It looks at a clock", //C
+        "Number of days since January 1st, 1899", //D
+        "A"]
 ];
 
 // this get function is short for the getElementById function  
 function get(x) {
+    "use strict";
     return document.getElementById(x);
 }
 
 function renderQuestion() {
+    "use strict";
     test = get("test");
     if (pos >= questions.length) {
         test.innerHTML = "<h2>You got " + correct + " of " + questions.length + " questions correct</h2>";
@@ -51,6 +82,7 @@ function renderQuestion() {
 }
 
 function checkAnswer() {
+    "use strict";
     // use getElementsByName because we have an array which it will loop through
     var i;
     choices = document.getElementsByName("choices");
@@ -66,7 +98,7 @@ function checkAnswer() {
     }
     // changes position of which character user is on
     pos += 1;
-    if (correct !== 5 && pos === 5) { // if the user doesn't get all 5 right, the quiz resets
+    if (correct !== 5 && pos === 5) {
         window.alert(test.innerHTML = "You got " + correct + " of " + questions.length + " questions correct! Try again!");
         renderQuestion(false);
     } else if (correct === 5) {
