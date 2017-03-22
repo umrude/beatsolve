@@ -1,15 +1,24 @@
 // pos is position of where the user in the test or which question they're up to
 var pos = 0,
-    test, test_status, question, choice, choices, chA, chB, chC, chD, correct = 0;
-// this is a multidimensional array with 4 inner array elements with 5 elements inside them
-// if you don't want answers viewable in the code, then you should use PHP and mySQL database
+    test,
+    test_status,
+    question,
+    choice,
+    choices,
+    chA,
+    chB,
+    chC,
+    chD,
+    correct = 0;
+
 var questions = [
-    ["Why does JavaScript and Java have similar names?", "Javascript is a stripped-down version of Java", "JavaScript's syntax is loosely based on Java's", "They both orginated ont he island of Java", "The creators loved coffee", "B"],
-    ["What are variables used for in JavaScript programs?", "Storing numbers, dates or other values", "Varying randomnly", "Causing high-school alegra flashbacks", "Creating variation in a function", "A"],
-    ["What is the correct JavaScript syntax to write 'Hello World'?", "System.out.println('Hello World)", "write.me'Hello World'", "document.write('Hello World')", "response.write('Hello World')", "C"],
-    ["Inside which HTML element do we put the JavaScript", "'< script >'", "'< js >'", "'< javascript >'", "'< dothing >'", "A"],
+    ["Why do JavaScript and Java have similar names?", "Javascript is a stripped-down version of Java", "JavaScript's syntax is loosely based on Java's", "They both orginated on the island of Java", "The creators loved coffee", "B"],
+    ["What are variables used for in JavaScript programs?", "Storing numbers, dates or other values", "Varying randomnly", "Causing high-school alegbra flashbacks", "Creating variation in a function", "A"],
+    ["What is the correct JavaScript syntax to write 'Hello World'?", "System.out.println('Hello World')", "write.me'Hello World'", "document.write('Hello World')", "response.write('Hello World')", "C"],
+    ["Inside which HTML element do we put the JavaScript", "< script >", "< js >", "< javascript >", "< dothing >", "A"],
     ["How does JavaScript store dates in a date object?", "The number of milliseconds since January 1st, 1970", "The number of seconds since the earth's first rotation", "It looks at a clock", "Number of days since January 1st, 1899", "A"]
 ];
+
 // this get function is short for the getElementById function  
 function get(x) {
     return document.getElementById(x);
@@ -34,8 +43,8 @@ function renderQuestion() {
     chD = questions[pos][4];
     test.innerHTML = "<h3>" + question + "</h3>";
     // the += appends to the data we started on the line above
-    test.innerHTML += "<input type='radio' name='choices' value='A'>  " + chA + "<br>";
-    test.innerHTML += "<input type='radio' name='choices' value='B'>  " + chB + "<br>";
+    test.innerHTML += "<input type='radio' name='choices' value='A'> " + chA + "<br>";
+    test.innerHTML += "<input type='radio' name='choices' value='B'> " + chB + "<br>";
     test.innerHTML += "<input type='radio' name='choices' value='C'> " + chC + "<br>";
     test.innerHTML += "<input type='radio' name='choices' value='D'> " + chD + "<br><br>";
 
@@ -45,7 +54,7 @@ function checkAnswer() {
     // use getElementsByName because we have an array which it will loop through
     var i;
     choices = document.getElementsByName("choices");
-    for (i = 0; i < choices.length; i++) {
+    for (i = 0; i < choices.length; i += 1) {
         if (choices[i].checked) {
             choice = choices[i].value;
         }
@@ -53,15 +62,26 @@ function checkAnswer() {
     // checks if answer matches the correct choice
     if (choice === questions[pos][5]) {
         //each time there is a correct answer this value increases
-        correct++;
-        if (correct === 5) {
-            window.location.href = "beatsolve.html" // when the user reaches 5 correct questions, they are able to move on to next portion of beatsolve
-        }
+        correct += 1;
     }
     // changes position of which character user is on
-    pos++;
+    pos += 1;
+    if (correct !== 5 && pos === 5) {
+        window.alert(test.innerHTML = "You got " + correct + " of " + questions.length + " questions correct! Try again!");
+        renderQuestion(false);
+    } else if (correct === 5) {
+        window.alert("You got " + correct + " of " + questions.length + " questions correct! Nice Work!");
+      
+        ////////////////////////////////////////////////////////////////////////////////////////
+        /////add here what you want beatsolve to do once the quiz is completed successfully/////
+        ////////////////////////////////////////////////////////////////////////////////////////
+        
+        window.location.href = "beatsolve.html"; // when the user reaches 5 correct questions, they are able to move on to next portion of beatsolve
+        
+    }
     // then the renderQuestion function runs again to go to next question
     renderQuestion();
-
+    
 }
+
 window.addEventListener("load", renderQuestion, false);
