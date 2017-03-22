@@ -53,7 +53,7 @@ function checkAnswer() {
     //each time there is a correct answer this value increases
         correct++;
     if (correct === 5){
-    window.location.href = "beatsolve.html"
+    window.location.href = "beatsolve.html"// when the user reaches 5 correct questions, they are able to move on to next portion of beatsolve
 }
     }
   // changes position of which character user is on
