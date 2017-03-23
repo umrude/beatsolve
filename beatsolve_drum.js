@@ -112,7 +112,7 @@ function checkAnswer() {
         renderQuestion(false);
     } else if (correct === 5) {
         
-        if (window.confirm("You got " + correct + " of " + questions.length + " questions correct! Nice Work, here's the next part of the song! Press 'OK' to head to the final part of the game or press 'Cancel' to chill here and listen to the rest of the track")) {
+        if (window.confirm("You got " + correct + " of " + questions.length + " questions correct! Nice Work, here's the next part of the song! Press 'OK' to head to the bass part of the game or press 'Cancel' to chill here and listen to the drum part of the track")) {
             
             window.location.href = "beatsolve_bass.html"; // when the user reaches 5 correct questions, they are able to move on to next portion of beatsolve    
        
