@@ -54,6 +54,12 @@ function get(x) {
     return document.getElementById(x);
 }
 
+function playAudio() {
+    "use strict";
+    var x = get("bass_audio");
+    x.play();
+}
+
 function renderQuestion() {
     "use strict";
     test = get("test");
@@ -76,7 +82,6 @@ function renderQuestion() {
     test.innerHTML += "<input type='radio' name='choices' value='B'> " + chB + "<br>";
     test.innerHTML += "<input type='radio' name='choices' value='C'> " + chC + "<br>";
     test.innerHTML += "<input type='radio' name='choices' value='D'> " + chD + "<br><br>";
-
 }
 
 function checkAnswer() {
@@ -100,18 +105,15 @@ function checkAnswer() {
         window.alert(test.innerHTML = "You got " + correct + " of " + questions.length + " questions correct! Try again!");
         renderQuestion(false);
     } else if (correct === 5) {
-        window.alert("You got " + correct + " of " + questions.length + " questions correct! Nice Work!");
-      
-        ////////////////////////////////////////////////////////////////////////////////////////
-        /////add here what you want beatsolve to do once the quiz is completed successfully/////
-        ////////////////////////////////////////////////////////////////////////////////////////
         
-        window.location.href = "beatsolve.html"; // when the user reaches 5 correct questions, they are able to move on to next portion of beatsolve
-        
+        if (window.confirm("You got " + correct + " of " + questions.length + " questions correct! Nice Work, here's the next part of the song! Press 'OK' to head to the final part of the game or press 'Cancel' to chill here and listen to the rest of the bass track")) {
+            window.location.href = "beatsolve_final.html"; // when the user reaches 5 correct questions and presses okay, they are able to move on to next portion of beatsolve    
+        } else {
+            playAudio();
+        }
     }
     // then the renderQuestion function runs again to go to next question
     renderQuestion();
-    
 }
 
 window.addEventListener("load", renderQuestion, false);
