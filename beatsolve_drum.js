@@ -55,6 +55,13 @@ function get(x) {
     return document.getElementById(x);
 }
 //
+
+function playAudio() {
+    "use strict";
+    var x = get("drum_audio");
+    x.play();
+}
+
 function renderQuestion() {
     "use strict";
     test = get("test");
@@ -104,8 +111,16 @@ function checkAnswer() {
         window.alert(test.innerHTML = "You got " + correct + " of " + questions.length + " questions correct! Please try again to unlock the next stage.");
         renderQuestion(false);
     } else if (correct === 5) {
-        window.alert("You got " + correct + " of " + questions.length + " questions correct! Nice work, advance to the next level");
-        window.location.href = "beatsolve_bass.html";
+        
+        if (window.confirm("You got " + correct + " of " + questions.length + " questions correct! Nice Work, here's the next part of the song! Press 'OK' to head to the final part of the game or press 'Cancel' to chill here and listen to the rest of the track")) {
+            
+            window.location.href = "beatsolve_bass.html"; // when the user reaches 5 correct questions, they are able to move on to next portion of beatsolve    
+       
+        } else {
+        
+            playAudio(); //plays the Audio when user presses 'cancel'
+        
+        }
     }
     renderQuestion();
 }
