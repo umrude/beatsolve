@@ -64,6 +64,8 @@ function renderQuestion() {
     "use strict";
     test = get("test");
     if (pos >= questions.length) {
+        test.innerHTML = "<h2>You got " + correct + " of " + questions.length + " questions correct! Here's the bass part! Press 'Final' when you're ready to move on!</h2>";
+        get("test_status").innerHTML = "Test completed";
         // resets the variable to allow users to restart the test
         pos = 0;
         correct = 0;
@@ -106,10 +108,14 @@ function checkAnswer() {
         renderQuestion(false);
     } else if (correct === 5) {
         
-        if (window.confirm("You got " + correct + " of " + questions.length + " questions correct! Nice Work, here's the next part of the song! Press 'OK' to head to the final part of the game or press 'Cancel' to chill here and listen to the rest of the bass track")) {
-            window.location.href = "beatsolve_final.html"; // when the user reaches 5 correct questions and presses okay, they are able to move on to next portion of beatsolve    
+        if (window.confirm("You got " + correct + " of " + questions.length + " questions correct! Nice Work, here's the next part of the song! Press 'OK' to head to the final part of the game or press 'Cancel' to chill here and listen to the rest of the track")) {
+            
+            window.location.href = "beatsolve_final.html"; // when the user reaches 5 correct questions, they are able to move on to next portion of beatsolve    
+       
         } else {
-            playAudio();
+        
+            playAudio(); //plays the Audio when user presses 'cancel'
+        
         }
     }
     // then the renderQuestion function runs again to go to next question
